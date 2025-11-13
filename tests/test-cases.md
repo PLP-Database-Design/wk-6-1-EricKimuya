@@ -1,59 +1,103 @@
-# Power Testers — Phase 2 Test Cases
-**Project:** Bookstore Project  
-**Date:** November 11, 2025  
+# 📘 Test Cases — Bookstore Project
+
 **Team:** Power Testers  
+**Date:** November 2025  
+**Environment:** Chrome v118, Windows 10, Localhost  
+**Team:** Power Testers 
 
 ---
 
-✅ **Test Case**  
-**ID:** TC-001  
-**Title:** Verify book search returns relevant results  
-**Pre-conditions:** User is on the homepage; sample book data is loaded  
-**Steps:**  
-1. Launch the Bookstore app (`http://localhost:3000`)  
-2. Enter a valid book title, e.g., “Python Basics” in the search bar  
-3. Click the search icon or press Enter  
-**Expected Result:** Books matching “Python Basics” appear in the catalog  
-**Post-conditions:** Search results displayed correctly  
-**Evidence:** `screenshots/TC-001_search_results.png`  
+### 🧠 Legend
+| ID Prefix | Area | Example |
+|------------|-------|----------|
+| TC-S | Search | TC-S01 |
+| TC-C | Cart & Checkout | TC-C01 |
+| TC-P | Payments | TC-P01 |
+| TC-O | Orders & Returns | TC-O01 |
+| TC-R | Reviews & Community | TC-R01 |
+| TC-A | Admin | TC-A01 |
+| TC-N | Notifications/Non-Functional | TC-N01 |
 
 ---
 
-✅ **Test Case**  
-**ID:** TC-002  
-**Title:** Add book to shopping cart successfully  
-**Pre-conditions:** User is on a book detail page  
-**Steps:**  
-1. Click on a book from the homepage  
-2. Click the “Add to Cart” button  
-3. Navigate to the cart page  
-**Expected Result:** The selected book appears in the cart with correct title, price, and quantity  
-**Post-conditions:** Cart count updates and persists until cleared  
-**Evidence:** `screenshots/TC-002_cart_add.png`  
+## 🔍 Search & Catalog (FR-O01, FR-X01)
+
+| ID | Test Case | Steps | Expected Result |
+|----|------------|--------|-----------------|
+| TC-S01 | Search by book title | Enter “Python 101” in search bar → Click Search | Results show all books titled *Python 101* |
+| TC-S02 | Search by author | Enter “John Doe” → Search | All books authored by John Doe appear |
+| TC-S03 | Search with no results | Enter “XYZ999” | “No results found” message displays |
+| TC-S04 | Filter by category | Choose “Programming” → Apply filter | Only programming books display |
+| TC-S05 | Sort by price | Select “Sort by: Low to High” | Books appear sorted by ascending price |
 
 ---
 
-✅ **Test Case**  
-**ID:** TC-003  
-**Title:** Attempt checkout without login (Negative Test)  
-**Pre-conditions:** Cart contains at least one item; user not logged in  
-**Steps:**  
-1. Open the cart page  
-2. Click the “Checkout” button  
-**Expected Result:** User is redirected to the login page or shown a prompt  
-**Post-conditions:** Checkout not processed without authentication  
-**Evidence:** `screenshots/TC-003_checkout_redirect.png`  
+## 🛒 Cart & Checkout (FR-O01, FR-O02)
+
+| ID | Test Case | Steps | Expected Result |
+|----|------------|--------|-----------------|
+| TC-C01 | Add book to cart | Click “Add to Cart” on a book | Cart count increases by 1 |
+| TC-C02 | Add multiple books | Add 3 different books | All 3 appear in cart |
+| TC-C03 | Remove item from cart | Click remove on an item | Item disappears from cart |
+| TC-C04 | Update quantity | Change book quantity from 1 to 3 | Total price updates accordingly |
+| TC-C05 | Proceed to checkout | Click “Checkout” → Redirect | Checkout form appears |
+| TC-C06 | Apply valid coupon | Enter “SAVE10” → Apply | 10% discount reflects on total |
+| TC-C07 | Apply invalid coupon | Enter “INVALID” → Apply | “Coupon not valid” message appears |
 
 ---
 
-✅ **Test Case**  
-**ID:** TC-004  
-**Title:** Complete checkout when logged in  
-**Pre-conditions:** User logged in with valid credentials; cart has one or more items  
-**Steps:**  
-1. Navigate to cart page  
-2. Click “Checkout”  
-3. Fill out shipping details and confirm purchase  
-**Expected Result:** Order confirmation message is displayed  
-**Post-conditions:** Order saved in order history  
-**Evidence:** `screenshots/TC-004_order_success.png`  
+## 💳 Payment (FR-O03)
+
+| ID | Test Case | Steps | Expected Result |
+|----|------------|--------|-----------------|
+| TC-P01 | Payment with valid card | Enter valid Visa card → Submit | “Payment Successful” message appears |
+| TC-P02 | Payment with invalid card | Enter wrong CVV → Submit | “Payment Failed” message displays |
+| TC-P03 | Empty payment form | Leave fields blank → Submit | “All fields required” validation triggers |
+| TC-P04 | M-Pesa payment method | Select M-Pesa → Enter number → Confirm | Payment processed successfully |
+
+---
+
+## 📦 Orders & Returns (FR-O04, FR-O05, FR-R01)
+
+| ID | Test Case | Steps | Expected Result |
+|----|------------|--------|-----------------|
+| TC-O01 | View order history | Go to “My Orders” | List of previous orders shown |
+| TC-O02 | Track order | Click “Track” → Enter Order ID | Correct tracking info appears |
+| TC-O03 | Cancel pending order | Click “Cancel” before dispatch | Order moves to “Cancelled” status |
+| TC-O04 | Return delivered order | Click “Return” → Select reason → Submit | Return request logged successfully |
+| TC-O05 | View refund status | Go to “My Returns” | Refund status displayed correctly |
+
+---
+
+## ⭐ Reviews & Community (FR-U01, FR-U02, FR-U03)
+
+| ID | Test Case | Steps | Expected Result |
+|----|------------|--------|-----------------|
+| TC-R01 | Add review | Enter rating + comment → Submit | Review appears under product |
+| TC-R02 | Edit review | Click “Edit” → Change text → Save | Updated review displays |
+| TC-R03 | Delete review | Click “Delete” | Review removed |
+| TC-R04 | View average rating | View book page with reviews | Average rating auto-calculated |
+
+---
+
+## ⚙️ Admin Console (FR-M01, FR-M02, FR-M03)
+
+| ID | Test Case | Steps | Expected Result |
+|----|------------|--------|-----------------|
+| TC-A01 | Add new book | Admin → Add new book form → Submit | Book appears in catalog |
+| TC-A02 | Edit existing book | Edit price → Save | Catalog updates successfully |
+| TC-A03 | Delete book | Click “Delete” | Book removed from system |
+
+---
+
+## 🔔 Notifications & Non-Functional (FR-N01, FR-N02, FR-X02)
+
+| ID | Test Case | Steps | Expected Result |
+|----|------------|--------|-----------------|
+| TC-N01 | Email confirmation on order | Place order → Check email | Confirmation email received |
+| TC-N02 | Load time performance | Open home page | Page loads in < 3 seconds |
+
+---
+
+✅ **Total Test Cases:** 30  
+✅ **Coverage:** 100 percent of Functional + 3 Non-Functional Requirements
